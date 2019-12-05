@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import Todo from "./components/TodoComponents/Todo";
 import TodoList from "./components/TodoComponents/TodoList";
+import TodoForm from "./components/TodoComponents/TodoForm";
 
 class App extends Component {
   // you will need a place to store your state in this component.
@@ -13,20 +14,42 @@ class App extends Component {
       {
         title: "Complete Project",
         completed: false,
-        id: Date.now()
+        id: 1
       },
       {
         title: "Grocery Shopping",
         completed: false,
-        id: Date.now() + 1
+        id: 2
       }
     ]
    }
   }
 
-  toggleItem = () => {
-    console.log("GOT IT!?")
+  toggleItem = itemId => {
+    console.log("GOT IT!?", itemId);
+    this.setState({ dos: this.state.dos.map( item => {
+      if(itemId === item.id) {
+        return {
+          ...item,
+          completed: !item.completed
+        };
+      }
+      return item;
+    })})
+  };
+
+  addItem = (itemText) => {
+    const newItem = {
+      title: itemText,
+      completed: false,
+      id: Date.now()
+    }
+
+    this.setState({
+      dos: [...this.state.dos, newItem]
+    })
   }
+ 
 
 
   render() {
@@ -37,6 +60,7 @@ class App extends Component {
           toggleItem={this.toggleItem}
           dos={this.state.dos}
         />
+        <TodoForm  addItem={this.addItem}/>
       </div>
     );
   }
