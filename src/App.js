@@ -25,10 +25,12 @@ class App extends Component {
    }
   }
 
+  changeTodo = e => this.setState({ [e.target.name]: e.target.value });
+
   toggleItem = itemId => {
-    console.log("GOT IT!?", itemId);
+    console.log("GOT IT!?", itemId)
     this.setState({ dos: this.state.dos.map( item => {
-      if(itemId === item.id) {
+      if(item.id === itemId) {
         return {
           ...item,
           completed: !item.completed
@@ -49,6 +51,12 @@ class App extends Component {
       dos: [...this.state.dos, newItem]
     })
   }
+
+  removeItem = e => {
+    e.preventDefault();
+    let dos = this.state.dos.filter(item => !item.completed);
+    this.setState({ dos });
+  };
  
 
 
@@ -60,7 +68,10 @@ class App extends Component {
           toggleItem={this.toggleItem}
           dos={this.state.dos}
         />
-        <TodoForm  addItem={this.addItem}/>
+        <TodoForm 
+          addItem={this.addItem}
+          removeItem={this.removeItem}
+        />
       </div>
     );
   }

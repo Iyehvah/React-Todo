@@ -15,15 +15,17 @@ class TodoForm extends Component {
     submitHandler = e => {
         e.preventDefault();
         this.props.addItem(this.state.itemText)
+        this.setState({itemText: ""});
     }
 
     render() {
         return (
-            <form onSubmit ={this.submitHandler}>
+            <form>
                 <input 
                     type="text" name="itemText" value={this.state.itemText} onChange={this.changeHandler}
                 />
-                <button type="submit">Add</button>
+                <button onClick={this.submitHandler}>Add</button>
+                <button onClick={this.props.removeItem}>Remove Completed</button>
             </form>
         )
     }
