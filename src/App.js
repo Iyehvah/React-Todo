@@ -18,7 +18,7 @@ class App extends Component {
       {
         title: "Grocery Shopping",
         completed: false,
-        id: Date.now()
+        id: Date.now() + 1
       }
     ]
    }
@@ -28,12 +28,13 @@ class App extends Component {
     console.log("GOT IT!?")
   }
 
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList 
-          handleComplete={this.toggleItem}
+          toggleItem={this.toggleItem}
           dos={this.state.dos}
         />
       </div>
