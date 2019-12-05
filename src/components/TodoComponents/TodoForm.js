@@ -1,4 +1,14 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
+
+
+const Btn = styled.button`
+    color: green;
+    padding: 10px;
+    margin: 10px;
+`;
+
+
 
 class TodoForm extends Component {
     constructor(props){
@@ -17,15 +27,16 @@ class TodoForm extends Component {
         this.props.addItem(this.state.itemText)
         this.setState({itemText: ""});
     }
+    
 
     render() {
         return (
             <form>
-                <input 
+                <input
                     type="text" name="itemText" value={this.state.itemText} onChange={this.changeHandler}
                 />
-                <button onClick={this.submitHandler}>Add</button>
-                <button onClick={this.props.removeItem}>Remove Completed</button>
+                <Btn onClick={this.submitHandler}>Add</Btn>
+                <Btn onClick={this.props.removeItem}>Remove</Btn>
             </form>
         )
     }

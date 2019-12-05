@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 // import Todo from "./components/TodoComponents/Todo";
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
+import styled from 'styled-components';
+
+const MainContent = styled.div`
+    text-align: center;
+`;
 
 class App extends Component {
   // you will need a place to store your state in this component.
@@ -62,17 +67,18 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <MainContent>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList 
-          toggleItem={this.toggleItem}
-          dos={this.state.dos}
-        />
         <TodoForm 
           addItem={this.addItem}
           removeItem={this.removeItem}
         />
-      </div>
+        <TodoList 
+          toggleItem={this.toggleItem}
+          dos={this.state.dos}
+        />
+ 
+      </MainContent>
     );
   }
 }
